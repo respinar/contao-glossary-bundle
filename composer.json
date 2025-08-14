@@ -17,8 +17,8 @@
         "source": "https://github.com/respinar/contao-glossary"
     },
     "require": {
-        "php": "^8.0",
-        "contao/core-bundle": "^4.13 || ^5.2"
+        "php": "^8.3",
+        "contao/core-bundle": "^5.3"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.12"
@@ -26,29 +26,9 @@
     "autoload": {
         "psr-4": {
             "Respinar\\GlossaryBundle\\": "src/"
-        },
-        "classmap": [
-            "contao/"
-        ],
-        "exclude-from-classmap": [
-            "contao/config/",
-            "contao/dca/",
-            "contao/languages/",
-            "contao/templates/"
-        ]
-    },
-    "config": {
-        "allow-plugins": {
-            "contao-components/installer": false,
-            "contao/manager-plugin": false,
-            "contao-community-alliance/composer-plugin": true
         }
-    },
+    },    
     "extra": {
         "contao-manager-plugin": "Respinar\\GlossaryBundle\\ContaoManager\\Plugin"
-    },
-    "scripts": {
-        "cs-fixer": "@php tools/ecs/vendor/bin/ecs check config/ contao/ src/ templates/ tests/ --config tools/ecs/config.php --fix --ansi",
-        "unit-tests": "@php tools/phpunit/vendor/bin/phpunit -c tools/phpunit/phpunit.xml.dist"
     }
 }
