@@ -1,0 +1,7 @@
+{% extends '@Contao/content_element/_base.html.twig' %}
+
+{% block content %}
+    {% for term in arrElements %}
+        {{ term|raw }}
+    {% endfor %}
+{% endblock %}
