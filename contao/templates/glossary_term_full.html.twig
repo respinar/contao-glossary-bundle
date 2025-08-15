@@ -1,0 +1,16 @@
+{% use "@Contao/component/_figure.html.twig" %}
+
+<div class="term">
+    
+    {% if figure %}
+        {% with {figure: figure} %}
+            {{ block('figure_component') }}
+        {% endwith %}
+    {% endif %}
+
+    <h3 class="term">{{ term }}</h3>
+    <div class="definition">{{ definition|raw }}</div>
+    <p class="link">
+        <a href="{{ url|insert_tag }}">{{ moreDetail }}</a>
+    </p>
+</div>
