@@ -21,7 +21,7 @@ use Contao\Input;
 $GLOBALS['TL_DCA']['tl_glossary'] = [
     'config' => [
         'dataContainer'    => DC_Table::class,
-        'ctabel'           => ['tl_glossary_term'],
+        'ctable'           => ['tl_glossary_term'],
         'enableVersioning' => true,
         'switchToEdit'     => true,
         'markAsCopy'       => 'title',
