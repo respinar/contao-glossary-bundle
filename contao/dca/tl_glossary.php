@@ -10,71 +10,69 @@ declare(strict_types=1);
  * @license MIT
  */
 
-use Contao\Backend;
 use Contao\DataContainer;
 use Contao\DC_Table;
-use Contao\Input;
 
-/**
+/*
  * Table tl_glossary
  */
 $GLOBALS['TL_DCA']['tl_glossary'] = [
     'config' => [
-        'dataContainer'    => DC_Table::class,
-        'ctable'           => ['tl_glossary_term'],
+        'dataContainer' => DC_Table::class,
+        'ctable' => ['tl_glossary_term'],
         'enableVersioning' => true,
-        'switchToEdit'     => true,
-        'markAsCopy'       => 'title',
-        'sql'              => [
+        'switchToEdit' => true,
+        'markAsCopy' => 'title',
+        'sql' => [
             'keys' => [
-                'id' => 'primary'
-            ]
+                'id' => 'primary',
+            ],
         ],
     ],
     'list' => [
-        'sorting' => [ 
-			'mode'                    => DataContainer::MODE_SORTED,
-			'fields'                  => array('title'),
-			'flag'                    => DataContainer::SORT_INITIAL_LETTER_ASC,
-			'panelLayout'             => 'search,filter,limit',
-			'defaultSearchField'      => 'title'
+        'sorting' => [
+            'mode' => DataContainer::MODE_SORTED,
+            'fields' => ['title'],
+            'flag' => DataContainer::SORT_INITIAL_LETTER_ASC,
+            'panelLayout' => 'search,filter,limit',
+            'defaultSearchField' => 'title',
         ],
-		'label' => [
-			'fields'                  => array('title'),
-			'format'                  => '%s'
-        ],     
+        'label' => [
+            'fields' => ['title'],
+            'format' => '%s',
+        ],
         'operations' => [
             'edit',
             'children',
             'copy',
             'delete',
             'show',
-        ]
+        ],
     ],
 
     // Palettes
     'palettes' => [
-		'__selector__' => [],
-		'default' => '{title_legend},title;'
-	],
+        '__selector__' => [],
+        'default' => '{title_legend},title;',
+    ],
 
-	// Subpalettes
-	'subpalettes' => [
-		'protected' => 'groups',
-	],
+    // Subpalettes
+    'subpalettes' => [
+        'protected' => 'groups',
+    ],
     'fields' => [
         'id' => [
-            'sql' => "int(10) unsigned NOT NULL auto_increment"
+            'sql' => 'int(10) unsigned NOT NULL auto_increment',
         ],
         'tstamp' => [
-            'sql' => "int(10) unsigned NOT NULL default 0"
+            'sql' => 'int(10) unsigned NOT NULL default 0',
         ],
         'title' => [
-            'exclude'   => true,
-			'search'    => true,
-			'inputType' => 'text',
-			'eval'      => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
-			'sql'       => "varchar(255) NOT NULL default ''"
-        ]
-    ]
+            'exclude' => true,
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+    ],
 ];
