@@ -11,7 +11,6 @@ declare(strict_types=1);
  */
 
 use Contao\Controller;
-
 use Respinar\GlossaryBundle\Controller\ContentElement\GlossaryController;
 
 $GLOBALS['TL_DCA']['tl_content']['palettes'][GlossaryController::TYPE] = '
@@ -24,29 +23,26 @@ $GLOBALS['TL_DCA']['tl_content']['palettes'][GlossaryController::TYPE] = '
 ';
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['glossary'] = [
-	'exclude'    => true,
-	'inputType'  => 'select',
-	'foreignKey' => 'tl_glossary.title',
-	'eval'       => ['multiple'=>false, 'foreignTable' => 'tl_glossary', 'mandatory' => true, 'tl_class' => 'w50'],
-	'sql'        => "int(10) NULL"
+    'exclude' => true,
+    'inputType' => 'select',
+    'foreignKey' => 'tl_glossary.title',
+    'eval' => ['multiple' => false, 'foreignTable' => 'tl_glossary', 'mandatory' => true, 'tl_class' => 'w50'],
+    'sql' => 'int(10) NULL',
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['glossary_term_order'] = [
-	'exclude'    => true,
-	'inputType'  => 'select',
-	'options'    => ['order_term_asc', 'order_term_desc'],
-	'reference'  => &$GLOBALS['TL_LANG']['tl_content'],
-	'eval'       => ['tl_class' => 'w50'],
-	'sql'        => "varchar(32) COLLATE ascii_bin NOT NULL default 'order_term_asc'"
+    'exclude' => true,
+    'inputType' => 'select',
+    'options' => ['order_term_asc', 'order_term_desc'],
+    'reference' => &$GLOBALS['TL_LANG']['tl_content'],
+    'eval' => ['tl_class' => 'w50'],
+    'sql' => "varchar(32) COLLATE ascii_bin NOT NULL default 'order_term_asc'",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['glossary_term_template'] = [
-	'exclude'    => true,
-	'inputType'  => 'select',
-	'options_callback' => static function ()
-	{
-		return Controller::getTemplateGroup('glossary_term');
-	},
-	'eval'       => ['includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'],
-	'sql'        => "varchar(64) COLLATE ascii_bin NOT NULL default ''"
+    'exclude' => true,
+    'inputType' => 'select',
+    'options_callback' => static fn () => Controller::getTemplateGroup('glossary_term'),
+    'eval' => ['includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50'],
+    'sql' => "varchar(64) COLLATE ascii_bin NOT NULL default ''",
 ];
