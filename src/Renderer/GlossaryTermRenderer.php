@@ -13,25 +13,23 @@ declare(strict_types=1);
 namespace Respinar\GlossaryBundle\Renderer;
 
 use Contao\ContentModel;
+use Contao\CoreBundle\Image\Studio\Studio;
 use Contao\FrontendTemplate;
 use Contao\Model\Collection;
 use Contao\StringUtil;
-use Contao\CoreBundle\Image\Studio\Studio;
 use Respinar\GlossaryBundle\Model\GlossaryTermModel;
 
 final class GlossaryTermRenderer
 {
-
-    public function __construct(
-        private readonly Studio $studio,
-    ) {
+    public function __construct(private readonly Studio $studio)
+    {
     }
 
     /**
      * @return array<string>
      */
-    public function render( ?Collection $terms, ContentModel $contentModel): array {
-
+    public function render(Collection|null $terms, ContentModel $contentModel): array
+    {
         if (null === $terms) {
             return [];
         }
@@ -49,13 +47,13 @@ final class GlossaryTermRenderer
         return $elements;
     }
 
-    private function renderTerm(GlossaryTermModel $term, ContentModel $contentModel): string {
-
+    private function renderTerm(GlossaryTermModel $term, ContentModel $contentModel): string
+    {
         $template = new FrontendTemplate($contentModel->glossary_term_template);
 
         $template->setData($term->row());
 
-        $template->moreDetail = $GLOBALS['TL_LANG']['MSC']['moreDetail'] ?? "More Details";
+        $template->moreDetail = $GLOBALS['TL_LANG']['MSC']['moreDetail'] ?? 'More Details';
 
         $figure = null;
 
@@ -79,9 +77,10 @@ final class GlossaryTermRenderer
                 ->createFigureBuilder()
                 ->setSize($imgSize)
                 ->from($term->imgSRC)
-                ->build();            
-        }        
-                
+                ->build()
+            ;
+        }
+
         $template->figure = $figure;
 
         return $template->parse();
