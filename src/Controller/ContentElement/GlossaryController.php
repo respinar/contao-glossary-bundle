@@ -21,17 +21,17 @@ use Respinar\GlossaryBundle\Renderer\GlossaryTermRenderer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-#[AsContentElement( type: GlossaryController::TYPE, category: 'miscellaneous')]
+#[AsContentElement(type: GlossaryController::TYPE, category: 'miscellaneous')]
 final class GlossaryController extends AbstractContentElementController
 {
     public const TYPE = 'glossary';
 
-    public function __construct(
-        private readonly GlossaryTermRenderer $renderer,
-    ) {
+    public function __construct(private readonly GlossaryTermRenderer $renderer)
+    {
     }
 
-    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response {
+    protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
+    {
         $t = GlossaryTermModel::getTable();
 
         $arrOptions = match ($model->glossary_term_order) {
@@ -46,12 +46,12 @@ final class GlossaryController extends AbstractContentElementController
         $objTerms = GlossaryTermModel::findBy(
             'pid',
             $model->glossary,
-            $arrOptions
+            $arrOptions,
         );
 
         $template->set(
             'arrElements',
-            $this->renderer->render($objTerms, $model)
+            $this->renderer->render($objTerms, $model),
         );
 
         return $template->getResponse();
