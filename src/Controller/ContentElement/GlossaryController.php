@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 #[AsContentElement(type: GlossaryController::TYPE, category: 'miscellaneous')]
 final class GlossaryController extends AbstractContentElementController
 {
-    public const TYPE = 'glossary';
+    public const string TYPE = 'glossary';
 
     public function __construct(private readonly GlossaryTermRenderer $renderer)
     {
