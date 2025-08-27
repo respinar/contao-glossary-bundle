@@ -30,7 +30,7 @@ final class GlossaryTermRenderer
      */
     public function render(Collection|null $terms, ContentModel $contentModel): array
     {
-        if (null === $terms) {
+        if (!$terms instanceof Collection) {
             return [];
         }
 
